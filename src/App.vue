@@ -16,7 +16,9 @@ import Cart from './components/Cart/Cart.vue';
 export default {
   name: 'app',
   components: {
-    TheHeader, Shop, Cart
+    TheHeader,
+    Shop,
+    Cart
   }
 }
 </script>
