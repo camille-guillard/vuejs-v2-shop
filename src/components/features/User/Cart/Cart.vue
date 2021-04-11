@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import CartProductsList from './CartProductsList.vue';
-import { eventBus } from '../../main';
+import CartProductsList from './CartProductsList';
+import { eventBus } from '../../../../main';
 
 
 export default {
