@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex flex-row justify-content-between px-5">
     <span>{{ product.title }}</span>
-    <span>{{ product.price }}€</span>
+    <span>{{ product.price | price }}</span>
     <button @click="removeProductFromCart" class="close">
       <span>&times;</span>
     </button>

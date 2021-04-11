@@ -4,7 +4,7 @@
     <cart-product-item v-for="product in cart" :key="product.id" :product="product"></cart-product-item>
     <template v-if="cart.length">
       <hr class="w-100">
-      <span>Total: {{ total }}€</span>
+      <span>Total: {{ total | price }}</span>
     </template>
   </div>
 </template>
