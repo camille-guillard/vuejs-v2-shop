@@ -1,6 +1,6 @@
 <template>
   <div class="w-25 border product-container d-flex flex-column">
-    <div class="d-flex flex-row justify-content-center">
+    <div class="d-flex flex-row justify-content-center img-container">
       <img :src="product.img" :alt="product.title" />
     </div>
     <div class="d-flex flex-row justify-content-center">
@@ -39,5 +39,9 @@ export default {
 
 p {
   font-size: 12px;
+}
+
+.img-container {
+  height: 50%;
 }
 </style>

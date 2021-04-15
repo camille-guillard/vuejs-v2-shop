@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-row shop-container">
       <transition name="left" appear>
         <shop class="w-75"></shop>
       </transition>
@@ -42,6 +42,10 @@ export default {
 
 .right-enter-active {
   animation: fromright 1s;
+}
+
+.shop-container {
+  padding: 0px 15px;
 }
 
 </style>
