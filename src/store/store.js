@@ -27,7 +27,6 @@ const product = {
         saveOne(context, product) {
             product = { ...product, id: context.state.datas.length + 1 };
             axios.post('products.json', product).then(() => {
-                this.products = [ ...this.products, product];
                 context.commit('addOne', product)
             });
         }
