@@ -10,10 +10,10 @@
       <span>{{ product.price | price }}</span>
     </div>
     <div class="quantity-container">
-      <input v-model.number="product.quantity" @change="changeQuantity(product.id, product.quantity)" type="number" min="1" max="10" />
+      <input v-model.number="product.quantity" @change="changeQuantity" type="number" min="1" max="10" />
     </div>
     <div class="remove-product-container">
-      <button class="close" @click="removeProductFromCart">
+      <button class="close" @click="deleteOne(product.id)">
         <span>&times;</span>
       </button>
     </div>
@@ -21,23 +21,22 @@
 </template>
 
 <script>
-import { eventBus } from '../../../../main'
+import { mapMutations } from 'vuex';
 
 export default {
   props: ['product'],
-    data() {
-    return {
-      quantity: 0
-    }
+  created() {
+    this.quantity = this.product.quantity;
   },
   methods: {
-    removeProductFromCart() {
-      eventBus.removeProductFromCart({...this.product});
-    },
-    changeQuantity(id, quantity) {
-      eventBus.changeQuantity(id, quantity);
+    ...mapMutations('cart', ['deleteOne']),
+    changeQuantity() {
+      this.$store.commit('cart/changeQuantity', {
+          id: this.product.id,
+          quantity: this.product.quantity,
+      });
     }
-  }
+  },
 
 }
 </script>

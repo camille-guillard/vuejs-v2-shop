@@ -4,23 +4,17 @@
 
 <script>
 import CartProductsList from './CartProductsList';
-import { eventBus } from '../../../../main';
+import { mapState } from 'vuex';
 
 export default {
   components: {
     CartProductsList
   },
-  data() {
-    return {
-      cart: []
-    }
+  computed: {
+    ...mapState('cart', {
+      cart: 'datas'
+    }),
   },
-  created() {
-    this.cart = eventBus.cart;
-    eventBus.$on('update:cart', (cart) =>{
-      this.cart = cart;
-    })
-  }
 }
 </script>
 

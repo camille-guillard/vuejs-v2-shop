@@ -22,7 +22,7 @@
           <div class="col-1 cart-container">
             <router-link class="nav-link" to="/cart" >
               <img src="https://image.flaticon.com/icons/png/512/14/14674.png" height="30px" width="30px" alt="Vue Shop" />
-              <span>({{nbItems}})</span>
+              <span>({{ quantity }})</span>
             </router-link>
           </div>
       </div>
@@ -31,18 +31,11 @@
 </template>
 
 <script>
-import { eventBus } from '../main';
+import { mapGetters } from 'vuex';
 
 export default {
-  data() {
-    return {
-      nbItems: 0
-    }
-  },
-  created() {
-    eventBus.$on('update:cart', () =>{
-          this.nbItems = (eventBus.cart.map( i => i.quantity).reduce((a,b) => a+b, 0));
-    })
+  computed: {
+    ...mapGetters('cart', ['quantity'])
   },
   directives: {
     triggerCollapse: {
