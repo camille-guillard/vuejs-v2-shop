@@ -21,7 +21,7 @@
           </div>
           <div class="col-1 cart-container">
             <router-link class="nav-link" to="/cart" >
-              <img src="https://image.flaticon.com/icons/png/512/14/14674.png" height="30px" width="30px" alt="Vue Shop" />
+              <img class="cart-img" src="https://image.flaticon.com/icons/png/512/14/14674.png" height="30px" width="30px" alt="Vue Shop" />
               <span>({{ quantity }})</span>
             </router-link>
           </div>
@@ -68,6 +68,12 @@ a {
     transform: translateY(-20px);
   } 
   to { }
+}
+
+.cart-img {
+  width: 35px;
+  height: 35px;
+  margin-right: 5px;
 }
 
 .cart-container {

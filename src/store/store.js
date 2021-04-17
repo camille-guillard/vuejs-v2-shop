@@ -1,8 +1,6 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
 import axios from 'axios';
+import { createStore } from 'vuex';
 
-Vue.use(Vuex);
 
 const product = {
     namespaced: true,
@@ -67,7 +65,7 @@ const cart = {
     }
 }
 
-const store = new Vuex.Store({
+const store = createStore({
     modules: {
         product,
         cart

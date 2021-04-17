@@ -1,18 +1,16 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router'
 import User from './components/features/User/User';
 import Cart from './components/features/User/Cart/Cart';
 import Admin from './components/features/Admin/Admin';
 
-Vue.use(VueRouter);
 
-const router = new VueRouter({
-    mode: 'history',
+const router = createRouter({
+    history: createWebHistory(),
     routes: [
         { path: '/shop', component: User },
         { path: '/cart', component: Cart },
         { path: '/admin', component: Admin },
-        { path: '**', redirect: '/shop' }
+        { path: '/:pathMatch(.*)*', name: 'not-found', redirect: '/shop' }
     ]
 });
 

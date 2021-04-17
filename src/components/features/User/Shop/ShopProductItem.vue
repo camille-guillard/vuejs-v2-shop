@@ -8,13 +8,13 @@
       <hr>
     </div>
     <div>
-      <p>{{ product.description | maxLength(150) }}</p>
+      <p>{{ maxLength(product.description, 150) }}</p>
     </div>
     <div class="price-container">
-      <span>Prix: {{ product.price | price }}</span>
+      <span>Prix: {{ price(product.price) }}</span>
     </div>
     <div class="shopping-button-container d-flex justify-content-center">
-      <button @click="addOne(product)" class="btn btn-primary btn-sm float-right shopping-button">Commander</button>
+      <button @click="addOne(product)" class="btn btn-primary btn-sm float-right shopping-button">Ajouter au panier</button>
     </div>
   </div>
 </template>
@@ -25,7 +25,17 @@ import { mapMutations } from 'vuex';
 export default {
   props: ['product'],
   methods: {
-    ...mapMutations('cart', ['addOne'])
+    ...mapMutations('cart', ['addOne']),
+    price(value) {
+      return `${ value }€`;
+    },
+    maxLength(value, length) {
+      if (value.length > length) {
+          return value.slice(0, length - 6) + ' (...)';
+      } else {
+          return value;
+      }
+    }
   }
 
 }

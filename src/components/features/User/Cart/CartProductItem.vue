@@ -7,10 +7,10 @@
       <span>{{ product.title }}</span>
     </div>
     <div class="price-container">
-      <span>{{ product.price | price }}</span>
+      <span>{{ price(product.price) }}</span>
     </div>
     <div class="quantity-container">
-      <input v-model.number="product.quantity" @change="changeQuantity" type="number" min="1" max="10" />
+      <input v-model.number="quantity" @change="changeQuantity" type="number" min="1" max="10" />
     </div>
     <div class="remove-product-container">
       <button class="close" @click="deleteOne(product.id)">
@@ -25,6 +25,11 @@ import { mapMutations } from 'vuex';
 
 export default {
   props: ['product'],
+    data() {
+    return {
+      quantity: this.product.quantity
+    }
+  },
   created() {
     this.quantity = this.product.quantity;
   },
@@ -33,8 +38,11 @@ export default {
     changeQuantity() {
       this.$store.commit('cart/changeQuantity', {
           id: this.product.id,
-          quantity: this.product.quantity,
+          quantity: this.quantity,
       });
+    },
+    price(value) {
+      return `${ value }€`;
     }
   },
 
