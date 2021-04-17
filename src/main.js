@@ -20,9 +20,15 @@ export const eventBus = new Vue({
   methods: {
     addProductToCart(product) {
       if (!this.cart.map( i => i.id).includes(product.id)) {
-        this.cart = [...this.cart, product];
-        this.$emit('update:cart', this.cart.slice());
+        this.cart = [...this.cart, {...product, quantity: 1}];
+      } else {
+        this.cart.filter(p => p.id == product.id).forEach(p => {p.quantity++});
       }
+      this.$emit('update:cart', this.cart.slice());
+    },
+    changeQuantity(id, quantity) {
+      this.cart.filter(p => p.id == id).forEach(p => p.quantity = quantity);
+      this.$emit('update:cart', this.cart.slice());
     },
     removeProductFromCart(product) {
       this.cart = this.cart.slice().filter(p => p.id != product.id);

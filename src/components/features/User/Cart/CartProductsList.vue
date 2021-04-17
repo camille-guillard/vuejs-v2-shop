@@ -12,7 +12,6 @@
 <script>
 import CartProductItem from './CartProductItem';
 
-
 export default {
   components: {
     CartProductItem
@@ -21,7 +20,7 @@ export default {
   computed: {
     total() {
       return this.cart.reduce((acc, v) => {
-        acc += v.price;
+        acc += v.price * v.quantity;
         return acc;
       }, 0);
     }

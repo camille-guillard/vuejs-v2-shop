@@ -8,23 +8,42 @@
       <button class="navbar-toggler">
         <span class="navbar-toggler-icon" v-trigger-collapse="'collapse'"></span>
       </button>
-      <div id="collapse" class="collapse navbar-collapse">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/shop" >Boutique</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/admin" >Admin</router-link>
-          </li>
-        </ul>
+        <div id="collapse" class="collapse navbar-collapse">
+          <div class="col-11">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <router-link class="nav-link" to="/shop" >Boutique</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/admin" >Admin</router-link>
+              </li>
+            </ul>
+          </div>
+          <div class="col-1 cart-container">
+            <router-link class="nav-link" to="/cart" >
+              <img src="https://image.flaticon.com/icons/png/512/14/14674.png" height="30px" width="30px" alt="Vue Shop" />
+              <span>({{nbItems}})</span>
+            </router-link>
+          </div>
       </div>
     </nav>
   </transition>
 </template>
 
 <script>
+import { eventBus } from '../main';
 
 export default {
+  data() {
+    return {
+      nbItems: 0
+    }
+  },
+  created() {
+    eventBus.$on('update:cart', () =>{
+          this.nbItems = (eventBus.cart.map( i => i.quantity).reduce((a,b) => a+b, 0));
+    })
+  },
   directives: {
     triggerCollapse: {
       inserted(el, binding) {
@@ -58,12 +77,26 @@ a {
   to { }
 }
 
+.cart-container {
+  display: ruby;
+}
+
 .v-enter-active {
   animation: fromtop 1s;
 }
 
 .router-link-active {
   font-weight: bold;
+}
+
+.navbar {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+}
+
+span {
+  color: #222222;
 }
 
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <the-header></the-header>
-    <div class="d-flex flex-column w-100">
+    <div class="router d-flex flex-column w-100">
       <router-view></router-view>
     </div>
   </div>
@@ -19,5 +19,5 @@ export default {
 </script>
 
 <style>
-
+  .router { padding-top: 70px; }
 </style>

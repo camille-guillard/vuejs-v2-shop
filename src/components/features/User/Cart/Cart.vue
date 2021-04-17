@@ -6,7 +6,6 @@
 import CartProductsList from './CartProductsList';
 import { eventBus } from '../../../../main';
 
-
 export default {
   components: {
     CartProductsList

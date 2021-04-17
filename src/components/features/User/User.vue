@@ -1,22 +1,17 @@
 <template>
     <div class="d-flex flex-row shop-container">
       <transition name="left" appear>
-        <shop class="w-75"></shop>
+        <shop class="w-100"></shop>
       </transition>
-      <transition name="right" appear>
-        <cart class="w-25"></cart>
-      </transition>
-
     </div>
 </template>
 
 <script>
 
 import Shop from './Shop/Shop';
-import Cart from './Cart/Cart';
 
 export default {
-    components: { Shop, Cart }
+    components: { Shop }
 }
 </script>
 
